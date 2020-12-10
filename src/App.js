@@ -1,10 +1,11 @@
-
+import Home from '../src/core/Home'
 
 function App() {
   return (
-    <div> 
-      Hello World!
-               </div>
+    <div className="flex text-2xl"> 
+      <p className="h-4 ml-4">  Hello World! </p>
+      <Home/>
+      </div>
   );
 }
 
