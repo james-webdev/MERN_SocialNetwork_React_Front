@@ -1,12 +1,15 @@
-import Home from '../src/core/Home'
+import react from 'react'
+import MainRouter from '../src/MainRouter'
+import {BrowserRouter} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="flex text-2xl"> 
-      <p className="h-4 ml-4">  Hello World! </p>
-      <Home/>
-      </div>
-  );
-}
+
+const App = () => (
+
+<BrowserRouter>
+   <MainRouter/>
+</BrowserRouter>
+
+)
+
 
 export default App;

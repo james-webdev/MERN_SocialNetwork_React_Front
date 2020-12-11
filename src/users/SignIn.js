@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+
+function SignIn() {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    redirect: false,
+  });
+
+  const handleChange = (e) => {
+    //    console.log(e);
+    const { id, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    console.log("submitted");
+    const payload = {
+      email: state.email,
+      password: state.password,
+    };
+    console.log(payload);
+    axios
+      .post("http://localhost:8000/signin", payload)
+      .then(function (response) {
+        if (response.status === 200) {
+          setState((prevState) => ({
+            ...prevState,
+            successMessage:
+              "Registration successful. Redirecting to home page..",
+            redirect: true,
+          }));
+          console.log(state.successMessage);
+          console.log(response.data.token);
+          console.log(state.redirect);
+        } else {
+          console.log("Some error ocurred");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  return (
+    <div>
+      {state.redirect && <Redirect to="/" />}
+
+      <div className="bg-green-300 min-h-screen flex flex-col">
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+          <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+            <h1 className="mb-8 text-3xl text-center">Sign In</h1>
+            <input
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="email"
+              id="email"
+              placeholder="Email"
+              value={state.email}
+              onChange={handleChange}
+            />
+
+            <input
+              type="password"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={state.password}
+              onChange={handleChange}
+            />
+
+            <button
+              type="submit"
+              className="w-full text-center py-3 rounded border bg-green text-black hover:bg-green-dark focus:outline-none my-1"
+              onClick={handleSubmit}
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SignIn;
