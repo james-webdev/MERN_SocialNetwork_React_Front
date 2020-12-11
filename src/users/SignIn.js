@@ -19,6 +19,8 @@ function SignIn() {
     }));
   };
 
+
+
   const handleSubmit = () => {
     console.log("submitted");
     const payload = {
@@ -36,9 +38,8 @@ function SignIn() {
               "Registration successful. Redirecting to home page..",
             redirect: true,
           }));
-          console.log(state.successMessage);
-          console.log(response.data.token);
-          console.log(state.redirect);
+          localStorage.setItem('jwt', JSON.stringify(response.data))
+          
         } else {
           console.log("Some error ocurred");
         }
