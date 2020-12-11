@@ -4,7 +4,10 @@ import React from 'react'
 const Home = () => (
   
 <div>
-<header className="h-20 bg-green-400 flex items-center justify-between">
+<header>
+
+<nav className="h-20 bg-green-400 flex items-center justify-between">
+
 <div>
    <p className="p-3 font-mono">INSTACLONE</p>
 </div>
@@ -18,6 +21,14 @@ const Home = () => (
 </svg>
    </button>
 </div>
+</nav>
+
+<div className="h-screen bg-blue-100 flex items-center justify-center">
+<p>
+Welcome to InstaClone
+</p>  
+</div>
+
 </header>
 
 
