@@ -1,14 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
     return { color: "#ffffff" };
-  } else return { color: "#ADD8E6" };
+  } else return { color: "#008000" };
 };
-
 export const isAuthenticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+
   if (localStorage.getItem("jwt")) {
     return JSON.parse(localStorage.getItem("jwt"));
   } else {
@@ -34,8 +37,15 @@ const Menu = ({ history }) => (
   <div>
     <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
       <div>
-        <p className="p-3 hidden sm:block font-mono">INSTACLONE</p>
+        <p className="p-3 text-md hidden sm:block font-mono">InstaClone</p>
       </div>
+      <Link
+        style={isActive(history, "/")}
+        className="p-2 hidden sm:block"
+        to="/users"
+      >
+        Users
+      </Link>
       <Link
         style={isActive(history, "/")}
         className="p-2 hidden sm:block"
@@ -72,7 +82,12 @@ const Menu = ({ history }) => (
             {" "}
             Sign Out
           </button>
-          <Link to={`/user/${isAuthenticated().user._id}`} className="p-2 hidden sm:block">{isAuthenticated().user.name}'s Profile</Link>
+          <Link
+            to={`/user/${isAuthenticated().user._id}`}
+            className="p-2 hidden sm:block"
+          >
+            {isAuthenticated().user.name}'s Profile
+          </Link>
         </>
       )}
     </div>
