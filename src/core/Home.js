@@ -4,8 +4,10 @@ const Home = () => (
   <div>
     <header>
       <div className="h-screen bg-green-300 flex items-center justify-center">
-        <p className="mb-40 text-3xl"> Welcome to InstaClone. Share your photos with your friends.</p>
-    
+        <p className="mb-40 p-4 text-3xl">
+          {" "}
+          Welcome to InstaClone. Share your photos with your friends.
+        </p>
       </div>
     </header>
   </div>

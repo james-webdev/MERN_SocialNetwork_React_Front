@@ -1,35 +1,91 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
 
-const Menu = () => (
+const isActive = (history, path) => {
+  if (history.location.pathname === path) {
+    return { color: "#ffffff" };
+  } else return { color: "#ADD8E6" };
+};
+
+export const isAuthenticated = () => {
+  if (localStorage.getItem("jwt")) {
+    return JSON.parse(localStorage.getItem("jwt"));
+  } else {
+    return false;
+  }
+};
+
+export const signOut = (next) => {
+  console.log("signing out");
+  localStorage.removeItem("jwt");
+  next();
+  axios
+    .get("http://localhost:8000/signout")
+    .then(function (response) {
+      console.log("sign out", response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+const Menu = ({ history }) => (
   <div>
-      <div className="h-20 bg-green-400 flex items-center p-3 items-center">
-        <div>
-          <p className="p-3 font-mono">INSTACLONE</p>
-        </div>
-        <Link className="p-2" to="/">
-          Home
-        </Link>
-        <Link className="p-2" to="/signin">
-          {" "}
-          Sign In
-        </Link>
-        <Link className="p-2" to="/signup">
-          {" "}
-          Sign Up
-        </Link>
+    <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
+      <div>
+        <p className="p-3 hidden sm:block font-mono">INSTACLONE</p>
       </div>
-      {/* <div className="h-20 bg-green-400 flex items-center justify-end">
-          <button className="p-3">
-            <svg viewBox="0 0 100 80" width="40" height="40">
-              <rect width="100" height="20"></rect>
-              <rect y="30" width="100" height="20"></rect>
-              <rect y="60" width="100" height="20"></rect>
-            </svg>
-          </button> 
-        </div> */}
-   
+      <Link
+        style={isActive(history, "/")}
+        className="p-2 hidden sm:block"
+        to="/"
+      >
+        Home
+      </Link>
+
+      {!isAuthenticated() && (
+        <>
+          <Link
+            style={isActive(history, "/signin")}
+            className="p-2 hidden sm:block"
+            to="/signin"
+          >
+            Sign In
+          </Link>
+          <Link
+            style={isActive(history, "/signup")}
+            className="p-2 hidden sm:block"
+            to="/signup"
+          >
+            Sign Up
+          </Link>
+        </>
+      )}
+
+      {isAuthenticated() && (
+        <>
+          <button
+            className="p-2 hidden sm:block"
+            onClick={() => signOut(() => history.push("/"))}
+          >
+            {" "}
+            Sign Out
+          </button>
+          <Link to={`/user/${isAuthenticated().user._id}`} className="p-2 hidden sm:block">{isAuthenticated().user.name}'s Profile</Link>
+        </>
+      )}
+    </div>
+    <div className="sm:hidden p-1 bg-green-400 flex items-center justify-end">
+      <button className="p-3 border-2 border-white border-opacity-50 m-1 rounded">
+        <svg viewBox="0 0 100 80" width="40" height="40">
+          <rect width="100" height="20"></rect>
+          <rect y="30" width="100" height="20"></rect>
+          <rect y="60" width="100" height="20"></rect>
+        </svg>
+      </button>
+    </div>
   </div>
 );
 
-export default Menu;
+export default withRouter(Menu);
