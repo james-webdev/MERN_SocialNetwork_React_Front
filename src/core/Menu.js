@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 
@@ -33,74 +33,101 @@ export const signOut = (next) => {
     });
 };
 
-const Menu = ({ history }) => (
-  <div>
-    <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
-      <div>
-        <p className="p-3 text-md hidden sm:block font-mono">InstaClone</p>
+const Menu = ({ history }) => {
+  const [isOpen, setIsOpen] = useState({
+    isOpen: false,
+  });
+
+  // const handleToggle = () => {
+  //   console.log("toggle burger");
+  //   setIsOpen((prevState) => ({
+  //     ...prevState,
+  //     isOpen: !isOpen,
+  //   }));
+  //   console.log(isOpen);
+  // };
+  return (
+    <div>
+      <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
+        <div>
+          <p className="p-3 text-md hidden sm:block font-mono">InstaClone</p>
+        </div>
+        <Link
+          style={isActive(history, "/")}
+          className="p-2 hidden sm:block"
+          to="/users"
+        >
+          Users
+        </Link>
+        <Link
+          style={isActive(history, "/")}
+          className="p-2 hidden sm:block"
+          to="/"
+        >
+          Home
+        </Link>
+
+        {!isAuthenticated() && (
+          <>
+            <Link
+              style={isActive(history, "/signin")}
+              className="p-2 hidden sm:block"
+              to="/signin"
+            >
+              Sign In
+            </Link>
+            <Link
+              style={isActive(history, "/signup")}
+              className="p-2 hidden sm:block"
+              to="/signup"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
+
+        {isAuthenticated() && (
+          <>
+            <button
+              className="p-2 hidden sm:block"
+              onClick={() => signOut(() => history.push("/"))}
+            >
+              {" "}
+              Sign Out
+            </button>
+            <Link
+              to={`/user/${isAuthenticated().user._id}`}
+              className="p-2 hidden sm:block"
+            >
+              {isAuthenticated().user.name}'s Profile
+            </Link>
+          </>
+        )}
       </div>
-      <Link
-        style={isActive(history, "/")}
-        className="p-2 hidden sm:block"
-        to="/users"
-      >
-        Users
-      </Link>
-      <Link
-        style={isActive(history, "/")}
-        className="p-2 hidden sm:block"
-        to="/"
-      >
-        Home
-      </Link>
-
-      {!isAuthenticated() && (
-        <>
-          <Link
-            style={isActive(history, "/signin")}
-            className="p-2 hidden sm:block"
-            to="/signin"
-          >
-            Sign In
-          </Link>
-          <Link
-            style={isActive(history, "/signup")}
-            className="p-2 hidden sm:block"
-            to="/signup"
-          >
-            Sign Up
-          </Link>
-        </>
-      )}
-
-      {isAuthenticated() && (
-        <>
+      <div className="sm:hidden p-1 bg-green-400">
+        <div>
           <button
-            className="p-2 hidden sm:block"
-            onClick={() => signOut(() => history.push("/"))}
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-3 border-2 border-white border-opacity-50 m-1 rounded"
           >
-            {" "}
-            Sign Out
+            <svg viewBox="0 0 100 80" width="40" height="40">
+              <rect width="100" height="20"></rect>
+              <rect y="30" width="100" height="20"></rect>
+              <rect y="60" width="100" height="20"></rect>
+            </svg>
           </button>
-          <Link
-            to={`/user/${isAuthenticated().user._id}`}
-            className="p-2 hidden sm:block"
-          >
-            {isAuthenticated().user.name}'s Profile
-          </Link>
-        </>
-      )}
+        </div>
+        <div>
+          <div className={isOpen ? "hidden" : "block"}>
+            <Link className="p-2">somethign</Link>
+            <Link className="p-2">ooioi</Link>
+            <Link className="p-2">oihoihoi</Link>
+            <Link className="p-2">oihoiho</Link>
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="sm:hidden p-1 bg-green-400 flex items-center justify-end">
-      <button className="p-3 border-2 border-white border-opacity-50 m-1 rounded">
-        <svg viewBox="0 0 100 80" width="40" height="40">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default withRouter(Menu);

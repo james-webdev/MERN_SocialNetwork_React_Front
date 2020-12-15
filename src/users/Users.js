@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { isAuthenticated } from "../core/Menu";
 import axios from "axios";
+import avatarImage from "../images/avatar.PNG";
+import { Link } from "react-router-dom";
 
 const Users = (props) => {
   const [state, setState] = useState({
@@ -37,23 +39,29 @@ const Users = (props) => {
   return (
     <>
       <div className="text-1xl font-medium p-2">
-        <p class="flex-auto w-full">
+        <p className="text-3xl font-bold">Users</p>
+        <p className="flex flex-wrap w-full">
           {usersObj.map((user, i) => {
             return (
-              <div>
-                <article class="sm:w-1/3 overflow-hidden rounded-lg shadow-lg">
-                  <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-                      <a
-                        class="no-underline hover:underline text-black"
-                        href="#"
-                      >
-                        {user.name}
-                      </a>
-                    </h1>
-                    <p class="text-grey-darker text-sm">{}</p>
+              <div className="flex-wrap" key={i}>
+                <article className="rounded-lg shadow-lg m-2 bg-green-100 hover:bg-green-200">
+                  <header className="leading-tight p-2 md:p-4">
+                    <div className="flex items-center justify-center">
+                      <h1 className="text-lg">{user.name}</h1>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <p className="text-grey-darker text-sm"> {user.email}</p>
+                    </div>
+                    <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
+                      <img src={avatarImage} alt={user.name}></img>
+                    </div>
                   </header>
-                  <div className="p-20">
+                  <div className="flex items-center justify-center leading-tight pb-6">
+                    <Link to={`user/${user._id}`} className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">
+                      View Profile
+                    </Link>
+                  </div>
+                  {/* <div className="p-20">
                     <button className="bg-green-600 hover:bg-green-800 text-black text-sm font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">
                       Delete User
                     </button>
@@ -61,16 +69,13 @@ const Users = (props) => {
                     <button className="bg-green-300 hover:bg-green-200 text-black text-sm font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">
                       Edit User
                     </button>
-                  </div>
+                  </div> */}
                 </article>
               </div>
             );
           })}
         </p>
-        <p></p>
-        <p>Joined: </p>
       </div>
-      Name
     </>
   );
 };
