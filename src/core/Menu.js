@@ -38,14 +38,6 @@ const Menu = ({ history }) => {
     isOpen: false,
   });
 
-  // const handleToggle = () => {
-  //   console.log("toggle burger");
-  //   setIsOpen((prevState) => ({
-  //     ...prevState,
-  //     isOpen: !isOpen,
-  //   }));
-  //   console.log(isOpen);
-  // };
   return (
     <div>
       <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
@@ -117,12 +109,71 @@ const Menu = ({ history }) => {
             </svg>
           </button>
         </div>
-        <div>
-          <div className={isOpen ? "hidden" : "block"}>
-            <Link className="p-2">somethign</Link>
-            <Link className="p-2">ooioi</Link>
-            <Link className="p-2">oihoihoi</Link>
-            <Link className="p-2">oihoiho</Link>
+      </div>
+      <div className="sm:hidden">
+        <div className={isOpen ? "hidden" : "flex bg-green-300"}>
+          <div className="p-3 m-2 border bg-gray-100 border-black rounded text-black">
+            <div className="">
+              <p className="p-1 text-md bg-gray-200 font-mono">InstaClone</p>
+            </div>
+            <div className="p-1 hover:bg-green-100">
+              <Link
+                to="/users"
+                className="p-2"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                Users
+              </Link>
+            </div>
+            <div className="p-1 hover:bg-green-100">
+              <Link to="/" className="p-2" onClick={() => setIsOpen(!isOpen)}>
+                Home
+              </Link>
+            </div>
+            {!isAuthenticated() && (
+              <>
+                <div className="p-1 hover:bg-green-100">
+                  <Link
+                    to="/signin"
+                    className="p-2"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    Sign In
+                  </Link>
+                </div>
+                <div className="p-1 hover:bg-green-100">
+                  <Link
+                    to="/signup"
+                    className="p-2"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              </>
+            )}
+
+            {isAuthenticated() && (
+              <>
+                <div className="p-1 hover:bg-green-100">
+                  <Link
+                    className="p-2"
+                    onClick={() => signOut(() => history.push("/"))}
+                  >
+                    Sign Out
+                  </Link>
+                </div>
+                <div className="p-1 hover:bg-green-100">
+                  <Link
+                    to={`/user/${isAuthenticated().user._id}`}
+                    className="p-2"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    {isAuthenticated().user.name}'s Profile
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

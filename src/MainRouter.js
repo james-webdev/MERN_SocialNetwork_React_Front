@@ -12,7 +12,11 @@ const MainRouter = () => (
     <Menu />
     <Switch>
       <Route exact path="/users" component={Users}></Route>
-      <Route exact path="/postcreate" component={PostCreateForm}></Route>
+      <Route
+        exact
+        path="/postcreate/:userId"
+        component={PostCreateForm}
+      ></Route>
       <Route exact path="/signup" component={SignUp}></Route>
       <Route exact path="/signin" component={SignIn}></Route>
       <Route exact path="/" component={Home}></Route>
