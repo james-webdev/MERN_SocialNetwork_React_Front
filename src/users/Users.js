@@ -38,13 +38,13 @@ const Users = (props) => {
 
   return (
     <>
-      <div className="text-1xl font-medium p-2">
-        <p className="text-3xl font-bold">Users</p>
+      <div className="text-1xl bg-green-300 font-medium p-2">
+        <p className="text-3xl p-2 font-bold">Users</p>
         <p className="flex flex-wrap w-full">
           {usersObj.map((user, i) => {
             return (
               <div className="flex-wrap" key={i}>
-                <article className="rounded-lg shadow-lg m-2 bg-green-100 hover:bg-green-200">
+                <article className="rounded-lg shadow-lg m-2 bg-gray-100 hover:bg-gray-200">
                   <header className="leading-tight p-2 md:p-4">
                     <div className="flex items-center justify-center">
                       <h1 className="text-lg">{user.name}</h1>
@@ -57,7 +57,10 @@ const Users = (props) => {
                     </div>
                   </header>
                   <div className="flex items-center justify-center leading-tight pb-6">
-                    <Link to={`user/${user._id}`} className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">
+                    <Link
+                      to={`user/${user._id}`}
+                      className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+                    >
                       View Profile
                     </Link>
                   </div>

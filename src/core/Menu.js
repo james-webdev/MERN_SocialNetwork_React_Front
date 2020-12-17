@@ -42,35 +42,41 @@ const Menu = ({ history }) => {
     <div>
       <div className="h-10 sm:h-20 hidden sm:flex bg-green-400 items-center p-3 items-center">
         <div>
-          <p className="p-3 text-md hidden sm:block font-mono">InstaClone</p>
+          <Link
+            style={isActive(history, "/")}
+            className="font-mono p-2 hidden sm:block"
+            to="/"
+          >
+            ArtBook
+          </Link>
         </div>
         <Link
-          style={isActive(history, "/")}
-          className="p-2 hidden sm:block"
+          style={isActive(history, "/users")}
+          className="p-2 font-mono hidden sm:block"
           to="/users"
         >
           Users
         </Link>
-        <Link
+        {/* <Link
           style={isActive(history, "/")}
-          className="p-2 hidden sm:block"
+          className="font-mono p-2 hidden sm:block"
           to="/"
         >
           Home
-        </Link>
+        </Link> */}
 
         {!isAuthenticated() && (
           <>
             <Link
               style={isActive(history, "/signin")}
-              className="p-2 hidden sm:block"
+              className="p-2 font-mono hidden sm:block"
               to="/signin"
             >
               Sign In
             </Link>
             <Link
               style={isActive(history, "/signup")}
-              className="p-2 hidden sm:block"
+              className="p-2 font-mono hidden sm:block"
               to="/signup"
             >
               Sign Up
@@ -81,7 +87,7 @@ const Menu = ({ history }) => {
         {isAuthenticated() && (
           <>
             <button
-              className="p-2 hidden sm:block"
+              className="p-2 hidden font-mono sm:block"
               onClick={() => signOut(() => history.push("/"))}
             >
               {" "}
@@ -114,7 +120,13 @@ const Menu = ({ history }) => {
         <div className={isOpen ? "hidden" : "flex bg-green-300"}>
           <div className="p-3 m-2 border bg-gray-100 border-black rounded text-black">
             <div className="">
-              <p className="p-1 text-md bg-gray-200 font-mono">InstaClone</p>
+              <Link
+                to="/"
+                className="p-2 bg-gray-200"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                ArtBook
+              </Link>
             </div>
             <div className="p-1 hover:bg-green-100">
               <Link
@@ -125,17 +137,17 @@ const Menu = ({ history }) => {
                 Users
               </Link>
             </div>
-            <div className="p-1 hover:bg-green-100">
+            {/* <div className="p-1 hover:bg-green-100">
               <Link to="/" className="p-2" onClick={() => setIsOpen(!isOpen)}>
                 Home
               </Link>
-            </div>
+            </div> */}
             {!isAuthenticated() && (
               <>
                 <div className="p-1 hover:bg-green-100">
                   <Link
                     to="/signin"
-                    className="p-2"
+                    className="font-mono p-2"
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     Sign In
@@ -144,7 +156,7 @@ const Menu = ({ history }) => {
                 <div className="p-1 hover:bg-green-100">
                   <Link
                     to="/signup"
-                    className="p-2"
+                    className="font-mono p-2"
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     Sign Up
@@ -157,16 +169,16 @@ const Menu = ({ history }) => {
               <>
                 <div className="p-1 hover:bg-green-100">
                   <Link
-                    className="p-2"
+                    className="font-mono p-2"
                     onClick={() => signOut(() => history.push("/"))}
                   >
                     Sign Out
                   </Link>
                 </div>
-                <div className="p-1 hover:bg-green-100">
+                <div className="p-1 font-mono hover:bg-green-100">
                   <Link
                     to={`/user/${isAuthenticated().user._id}`}
-                    className="p-2"
+                    className="font-mono p-2"
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     {isAuthenticated().user.name}'s Profile
