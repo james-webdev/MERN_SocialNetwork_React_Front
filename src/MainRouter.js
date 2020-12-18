@@ -6,12 +6,14 @@ import SignIn from "../src/users/SignIn";
 import Profile from "../src/users/Profile";
 import Users from "../src/users/Users";
 import PostCreateForm from "../src/posts/PostCreateForm";
+import SinglePost from "../src/posts/SinglePost";
 
 const MainRouter = () => (
   <div>
     <Menu />
     <Switch>
       <Route exact path="/users" component={Users}></Route>
+      <Route exact path="/post/:postId" component={SinglePost}></Route>
       <Route
         exact
         path="/postcreate/:userId"

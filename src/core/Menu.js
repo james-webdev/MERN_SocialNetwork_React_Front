@@ -95,7 +95,7 @@ const Menu = ({ history }) => {
             </button>
             <Link
               to={`/user/${isAuthenticated().user._id}`}
-              className="p-2 hidden sm:block"
+              className="p-2 hidden font-mono sm:block"
             >
               {isAuthenticated().user.name}'s Profile
             </Link>

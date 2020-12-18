@@ -52,7 +52,7 @@ const Users = (props) => {
                     <div className="flex items-center justify-center">
                       <p className="text-grey-darker text-sm"> {user.email}</p>
                     </div>
-                    <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
+                    <div className="flex items-center justify-center w-36 rounded-md p-2 mt-2">
                       <img src={avatarImage} alt={user.name}></img>
                     </div>
                   </header>

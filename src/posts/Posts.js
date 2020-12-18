@@ -45,6 +45,8 @@ const Posts = (props) => {
             console.log("here is your post", post);
             return post.map((p) => {
               //   console.log("here is your p", p);
+              const posterId = p.postedBy ? `/user/${p.postedBy._id}` : "";
+              const posterName = p.postedBy ? p.postedBy.name : " Unknown";
               return (
                 <div className="flex-wrap" key={i}>
                   <article className="rounded shadow-lg m-2 bg-gray-100 hover:bg-gray-200">
@@ -59,15 +61,27 @@ const Posts = (props) => {
                         />
                       </div>
                       <div className="flex items-center justify-center">
-                        <h1 className="text-lg">{p.title}</h1>
+                        <h1 className="text-lg">{p.title.substring(0, 25)}</h1>
                       </div>
                       <div className="flex items-center justify-center">
-                        <p className="text-grey-darker text-sm"> {p.body}</p>
+                        <p className="text-grey-darker text-sm">
+                          {" "}
+                          {p.body.substring(0, 25)}
+                        </p>
                       </div>
+                      <br />
+                      <p className="text-xs">
+                        Posted by{" "}
+                        <Link className="text-green-400" to={`${posterId}`}>
+                          {posterName}{" "}
+                        </Link>
+                        <br />
+                        on {new Date(p.created).toDateString()}
+                      </p>
                     </header>
                     <div className="flex items-center justify-center leading-tight pb-6">
                       <Link
-                        to={`/${post._id}`}
+                        to={`/post/${p._id}`}
                         className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
                       >
                         View Post
