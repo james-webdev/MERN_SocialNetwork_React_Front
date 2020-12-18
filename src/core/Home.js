@@ -5,7 +5,7 @@ const Home = () => (
   <div className="bg-green-300 h-screen">
     <header>
       <div className="bg-green-300 flex items-center justify-center">
-        <p className="p-3 mt-7 text-3xl font-mono">
+        <p className="p-5 mt-7 text-3xl font-mono">
           {" "}
           Welcome to ArtBook. Share art with your friends.
         </p>

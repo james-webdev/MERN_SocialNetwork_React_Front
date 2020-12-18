@@ -52,13 +52,15 @@ const Posts = (props) => {
                   <article className="rounded shadow-lg m-2 bg-gray-100 hover:bg-gray-200">
                     <header className="leading-tight p-2 md:p-4">
                       <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
-                        <img
-                          src={`http://localhost:8000/post/photo/${p._id}`}
-                          alt={p.title}
-                          onError={(i) => (i.target.src = `${avatarImage}`)}
-                          className=""
-                          style={{ height: "150px", width: "100%" }}
-                        />
+                        <Link to={`/post/${p._id}`}>
+                          <img
+                            src={`http://localhost:8000/post/photo/${p._id}`}
+                            alt={p.title}
+                            onError={(i) => (i.target.src = `${avatarImage}`)}
+                            className=""
+                            style={{ objectFit: "cover" }}
+                          />
+                        </Link>
                       </div>
                       <div className="flex items-center justify-center">
                         <h1 className="text-lg">{p.title.substring(0, 25)}</h1>
@@ -79,14 +81,14 @@ const Posts = (props) => {
                         on {new Date(p.created).toDateString()}
                       </p>
                     </header>
-                    <div className="flex items-center justify-center leading-tight pb-6">
+                    {/* <div className="flex items-center justify-center leading-tight pb-6">
                       <Link
                         to={`/post/${p._id}`}
                         className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
                       >
                         View Post
                       </Link>
-                    </div>
+                    </div> */}
                     {/* <div className="p-20">
                         <button className="bg-green-600 hover:bg-green-800 text-black text-sm font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">
                           Delete User
