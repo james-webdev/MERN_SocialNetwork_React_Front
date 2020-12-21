@@ -19,8 +19,6 @@ function SignIn() {
     }));
   };
 
-
-
   const handleSubmit = () => {
     console.log("submitted");
     const payload = {
@@ -38,8 +36,7 @@ function SignIn() {
               "Registration successful. Redirecting to home page..",
             redirect: true,
           }));
-          localStorage.setItem('jwt', JSON.stringify(response.data))
-          
+          localStorage.setItem("jwt", JSON.stringify(response.data));
         } else {
           console.log("Some error ocurred");
         }
@@ -55,7 +52,7 @@ function SignIn() {
 
       <div className="bg-green-300 min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <div className="bg-gray-100 px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Sign In</h1>
             <input
               type="text"
@@ -79,7 +76,7 @@ function SignIn() {
 
             <button
               type="submit"
-              className="w-full text-center py-3 rounded border bg-green text-black hover:bg-green-dark focus:outline-none my-1"
+              className="w-full text-center py-3 rounded border bg-green-200 text-black hover:bg-green-300 focus:outline-none my-1"
               onClick={handleSubmit}
             >
               Sign In

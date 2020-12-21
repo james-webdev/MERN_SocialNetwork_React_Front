@@ -54,7 +54,7 @@ const SinglePost = (props) => {
       ) : (
         <div key={state.post._id}>
           <div>
-            <article className="sm:w-1/3 mx-auto max-w-2xl rounded p-3 shadow-lg m-4 bg-gray-100">
+            <article className="mx-auto max-w-sm sm:max-w-xl rounded p-3 shadow-lg m-4 bg-gray-100">
               <header className="leading-tight p-2 md:p-4">
                 <div className="flex items-center justify-center">
                   <img
