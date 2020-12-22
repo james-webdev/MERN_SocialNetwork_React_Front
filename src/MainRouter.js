@@ -7,12 +7,14 @@ import Profile from "../src/users/Profile";
 import Users from "../src/users/Users";
 import PostCreateForm from "../src/posts/PostCreateForm";
 import SinglePost from "../src/posts/SinglePost";
+import UserUpdateForm from "../src/users/UserUpdateForm";
 
 const MainRouter = () => (
   <div>
     <Menu />
     <Switch>
       <Route exact path="/users" component={Users}></Route>
+      <Route exact path="/userupdateform" component={UserUpdateForm}></Route>
       <Route exact path="/post/:postId" component={SinglePost}></Route>
       <Route
         exact

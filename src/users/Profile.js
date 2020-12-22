@@ -60,9 +60,19 @@ const Profile = (props) => {
             <div className="flex p-2 items-center justify-center">
               <p> {state.user.name}</p>
             </div>
-            <div className="flex items-center justify-center w-48 rounded p-2 mt-2">
-              <img src={avatarImage} alt={state.user.name}></img>
-            </div>
+            <Link
+              to="/userupdateform"
+              className="flex items-center justify-center w-48 rounded p-2 mt-2"
+            >
+              <img
+                title="Click to update profile pic"
+                className="rounded border-4 border-white"
+                src={`http://localhost:8000/user/photo/${state.user._id}`}
+                onError={(i) => (i.target.src = `${avatarImage}`)}
+                alt={state.user.name}
+                style={{ objectFit: "cover", height: "96px", width: "96px" }}
+              ></img>
+            </Link>
             {/* <p>Joined: {new Date(state.user.created).toDateString()}</p> */}
           </div>
         </div>
@@ -75,9 +85,9 @@ const Profile = (props) => {
                   Delete Profile
                 </button>
 
-                <button class="bg-green-300 shadow hover:bg-green-200 text-black font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">
-                  Edit Profile
-                </button> */}
+                <button class="bg-white shadow text-black font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">
+                  Upload Profile Pic
+                </button>*/}
 
                 <Link
                   to={`/postcreate/${isAuthenticated().user._id}`}

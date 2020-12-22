@@ -38,7 +38,7 @@ const Posts = (props) => {
 
   return (
     <>
-      <div className="text-1xl bg-green-300 font-medium p-2">
+      <div className="text-1xl p-2 bg-green-300 font-medium">
         {/* <p className="text-3xl p-2 font-mono font-bold">Posts</p> */}
         <p className="flex flex-wrap justify-center items-center w-full">
           {postsObj.map((post, i) => {
@@ -48,9 +48,9 @@ const Posts = (props) => {
               const posterId = p.postedBy ? `/user/${p.postedBy._id}` : "";
               const posterName = p.postedBy ? p.postedBy.name : " Unknown";
               return (
-                <div className="flex-wrap" key={i}>
-                  <article className="rounded shadow-lg m-2 bg-gray-100 hover:bg-gray-200">
-                    <header className="leading-tight p-2 md:p-4">
+                <div className="flex-wrap p-1 sm:p-0" key={i}>
+                  <article className="rounded shadow-lg p-1 m-1 bg-gray-100 hover:bg-gray-200">
+                    <header className="leading-tight md:p-4">
                       <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
                         <Link to={`/post/${p._id}`}>
                           <img
@@ -58,7 +58,7 @@ const Posts = (props) => {
                             alt={p.title}
                             onError={(i) => (i.target.src = `${avatarImage}`)}
                             className=""
-                            style={{ objectFit: "cover" }}
+                            style={{ objectFit: "cover", height: "160px" }}
                           />
                         </Link>
                       </div>
@@ -72,7 +72,7 @@ const Posts = (props) => {
                         </p>
                       </div>
                       <br />
-                      <p className="text-xs">
+                      <p className="text-xs p-1">
                         Posted by{" "}
                         <Link className="text-green-400" to={`${posterId}`}>
                           {posterName}{" "}

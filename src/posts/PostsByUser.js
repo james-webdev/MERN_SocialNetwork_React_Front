@@ -27,12 +27,8 @@ const PostsByUser = (props) => {
             loading: false,
           }));
           console.log(response.data);
-          console.log("user in state", state.user);
         } else {
           console.log("Some error ocurred");
-          setState((prevState) => ({
-            ...prevState,
-          }));
         }
       })
       .catch(function (error) {
@@ -48,7 +44,7 @@ const PostsByUser = (props) => {
 
   return (
     <>
-      <div className="">
+      <div className="bg-green-200 h-screen">
         <div className="flex justify-center items-center bg-green-200 text-2xl font-medium">
           <p className="p-3">
             Posts{" "}
@@ -63,7 +59,7 @@ const PostsByUser = (props) => {
           {/* <p className="text-3xl p-2 font-mono font-bold">Posts</p> */}
           <p className="flex flex-wrap justify-center items-center w-full">
             {postsObj.map((post, i) => {
-              console.log("here is your post", post);
+              // console.log("here is your post", post);
 
               //   console.log("here is your p", p);
               const posterId = post.postedBy
@@ -83,7 +79,7 @@ const PostsByUser = (props) => {
                             alt={post.title}
                             onError={(i) => (i.target.src = `${avatarImage}`)}
                             className=""
-                            style={{ objectFit: "cover" }}
+                            style={{ objectFit: "cover", height: "160px" }}
                           />
                         </Link>
                       </div>

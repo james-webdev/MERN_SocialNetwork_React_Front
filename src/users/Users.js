@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { isAuthenticated } from "../core/Menu";
 import axios from "axios";
 import avatarImage from "../images/avatar.PNG";
 import { Link } from "react-router-dom";
@@ -53,7 +52,11 @@ const Users = (props) => {
                       <p className="text-grey-darker text-sm"> {user.email}</p>
                     </div>
                     <div className="flex items-center justify-center w-36 rounded-md p-2 mt-2">
-                      <img src={avatarImage} alt={user.name}></img>
+                      <img
+                        src={`http://localhost:8000/user/photo/${user._id}`}
+                        onError={(i) => (i.target.src = `${avatarImage}`)}
+                        alt={user.name}
+                      ></img>
                     </div>
                   </header>
                   <div className="flex items-center justify-center leading-tight pb-6">
