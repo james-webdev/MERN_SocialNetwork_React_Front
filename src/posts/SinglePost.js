@@ -36,6 +36,9 @@ const SinglePost = (props) => {
         });
     };
     fetchPost();
+    // return () => {
+    //   console.log("this needs to cleanup");
+    // };
   }, [props.match.params.postId]);
 
   const posterId = state.post.postedBy

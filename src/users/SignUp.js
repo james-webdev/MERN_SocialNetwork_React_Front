@@ -94,15 +94,10 @@ function SignUp() {
             </button>
           </div>
 
-          <div className="text-grey-dark mt-6">
-            Already have an account?
-            <a
-              className="no-underline border-b border-blue text-blue"
-              href="./signIn"
-            >
-              Log in
+          <div className="text-black mt-6">
+            <a className="no-underline" href="./signin">
+              Already have an account?
             </a>
-            .
           </div>
         </div>
       </div>

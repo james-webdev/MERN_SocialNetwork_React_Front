@@ -30,6 +30,9 @@ const Posts = (props) => {
       .catch(function (error) {
         console.log(error);
       });
+    // return () => {
+    //   console.log("this needs to cleanup");
+    // };
   }, [state.user]);
 
   const postsObj = Object.values(state.posts);
@@ -72,7 +75,7 @@ const Posts = (props) => {
                         </p>
                       </div>
                       <br />
-                      <p className="text-xs p-1">
+                      <p className="text-xs p-2 sm:p-1">
                         Posted by{" "}
                         <Link className="text-green-400" to={`${posterId}`}>
                           {posterName}{" "}

@@ -30,16 +30,19 @@ const Users = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+    // return () => {
+    //   console.log("this needs to cleanup");
+    // };
+  }, [state.user]);
 
   const usersObj = Object.values(state.users);
   console.log(usersObj);
 
   return (
     <>
-      <div className="text-1xl bg-green-300 font-medium p-2">
+      <div className="text-1xl h-sceen bg-green-300 font-medium p-2">
         <p className="text-3xl p-2 font-bold">Users</p>
-        <p className="flex flex-wrap w-full">
+        <div className="flex flex-wrap w-full">
           {usersObj.map((user, i) => {
             return (
               <div className="flex-wrap" key={i}>
@@ -51,22 +54,26 @@ const Users = (props) => {
                     <div className="flex items-center justify-center">
                       <p className="text-grey-darker text-sm"> {user.email}</p>
                     </div>
-                    <div className="flex items-center justify-center w-36 rounded-md p-2 mt-2">
+                    <Link
+                      to={`user/${user._id}`}
+                      className="flex items-center justify-center w-36 rounded-md p-2 mt-2"
+                    >
                       <img
                         src={`http://localhost:8000/user/photo/${user._id}`}
                         onError={(i) => (i.target.src = `${avatarImage}`)}
                         alt={user.name}
+                        style={{ objectFit: "cover", height: "160px" }}
                       ></img>
-                    </div>
+                    </Link>
                   </header>
-                  <div className="flex items-center justify-center leading-tight pb-6">
+                  {/* <div className="flex items-center justify-center leading-tight pb-6">
                     <Link
                       to={`user/${user._id}`}
                       className="bg-green-300 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
                     >
                       View Profile
                     </Link>
-                  </div>
+                  </div> */}
                   {/* <div className="p-20">
                     <button className="bg-green-600 hover:bg-green-800 text-black text-sm font-bold py-1 px-2 rounded ml-4 mt-3 mr-15">
                       Delete User
@@ -80,7 +87,7 @@ const Users = (props) => {
               </div>
             );
           })}
-        </p>
+        </div>
       </div>
     </>
   );

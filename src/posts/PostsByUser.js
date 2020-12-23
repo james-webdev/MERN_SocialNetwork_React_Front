@@ -34,10 +34,16 @@ const PostsByUser = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [props.userId, state.user]);
+    // return () => {
+    //   console.log("this needs to cleanup");
+    // };
+  }, [props.userId]);
 
   const postsObj = Object.values(state.posts);
   const postsCount = postsObj.length;
+  console.log("props", props);
+  // const followersCount = props.following.followers.length;
+  // const followingCount = props.following.following.length;
   //   console.log("here are your posts", postsObj);
   console.log("here are your posts count", postsObj.length);
   //   console.log("here are your state posts", state.posts);
@@ -52,8 +58,18 @@ const PostsByUser = (props) => {
               {postsCount}
             </Link>
           </p>
-          <p className="p-3">Followers </p>
-          <p className="p-3">Following </p>
+          {/* <p className="p-3">
+            Followers{" "}
+            <Link className="text-green-600" to="">
+              {followersCount}
+            </Link>{" "}
+          </p>
+          <p className="p-3">
+            Following{" "}
+            <Link className="text-green-600" to="">
+              {followingCount}
+            </Link>{" "}
+          </p> */}
         </div>
         <div className="text-1xl flex bg-green-200 font-medium p-2">
           {/* <p className="text-3xl p-2 font-mono font-bold">Posts</p> */}
