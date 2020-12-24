@@ -96,7 +96,7 @@ function SignUp() {
 
           <div className="text-black mt-6">
             <a className="no-underline" href="./signin">
-              Already have an account?
+              Already have an account? Sign In.
             </a>
           </div>
         </div>

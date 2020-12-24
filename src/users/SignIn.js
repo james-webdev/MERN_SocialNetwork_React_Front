@@ -84,7 +84,7 @@ function SignIn() {
           </div>
           <div className="text-black mt-6">
             <a className="" href="./signup">
-              No account yet?
+              No account yet? Sign Up.
             </a>
           </div>
         </div>

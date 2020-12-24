@@ -61,7 +61,7 @@ const Menu = ({ history }) => {
           style={isActive(history, "/")}
           className="font-mono p-2 hidden sm:block"
           to="/"
-        >
+          >
           Home
         </Link> */}
 
@@ -81,6 +81,14 @@ const Menu = ({ history }) => {
             >
               Sign Up
             </Link>
+            {/* <div className="bg-green-400">
+              <Link
+                to="/signin"
+                className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded ml-64 mt-3 mr-15"
+              >
+                Create Post
+              </Link>
+            </div> */}
           </>
         )}
 
@@ -119,13 +127,9 @@ const Menu = ({ history }) => {
       <div className="sm:hidden">
         <div className={isOpen ? "hidden" : "flex bg-green-300"}>
           <div className="p-3 m-2 border bg-gray-100 border-black rounded text-black">
-            <div className="">
-              <Link
-                to="/"
-                className="p-2 bg-gray-200"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                ArtBook
+            <div className="p-1 hover:bg-green-100">
+              <Link to="/" className="p-2" onClick={() => setIsOpen(!isOpen)}>
+                Home
               </Link>
             </div>
             <div className="p-1 hover:bg-green-100">
@@ -160,6 +164,11 @@ const Menu = ({ history }) => {
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     Sign Up
+                  </Link>
+                </div>
+                <div className="p-1 hover:bg-green-100">
+                  <Link to="/signin" className="font-mono p-2">
+                    Create Post
                   </Link>
                 </div>
               </>

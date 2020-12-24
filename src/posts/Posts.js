@@ -53,7 +53,7 @@ const Posts = (props) => {
               return (
                 <div className="flex-wrap p-1 sm:p-0" key={i}>
                   <article className="rounded shadow-lg p-1 m-1 bg-gray-100 hover:bg-gray-200">
-                    <header className="leading-tight md:p-4">
+                    <header className="leading-tight p-1 md:p-4">
                       <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
                         <Link to={`/post/${p._id}`}>
                           <img

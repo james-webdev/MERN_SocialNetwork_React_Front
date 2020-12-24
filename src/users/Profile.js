@@ -28,9 +28,9 @@ const Profile = (props) => {
 
   useEffect(() => {
     const fetchProfile = () => {
-      console.log("user ID from route params", props.match.params.userId);
+      // console.log("user ID from route params", props.match.params.userId);
       const userId = props.match.params.userId;
-      console.log(userId);
+      // console.log(userId);
       const token = isAuthenticated().token;
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -42,10 +42,10 @@ const Profile = (props) => {
         .get(`http://localhost:8000/user/${userId}`, bodyParameters, config)
         .then(function (response) {
           if (response.status === 200) {
-            console.log("response data", response.data);
-            console.log("response data", response.data);
+            // console.log("response data", response.data);
+            // console.log("response data", response.data);
             let following = checkFollow(response.data);
-            console.log("following boolean", following);
+            // console.log("following boolean", following);
             setState((prevState) => ({
               ...prevState,
               user: response.data,
@@ -74,12 +74,12 @@ const Profile = (props) => {
   }, [props.match.params.userId]);
 
   const clickFollowButton = () => {
-    console.log("clicked here");
+    // console.log("clicked here");
     const userId = isAuthenticated().user._id;
-    console.log("uId", userId);
+    // console.log("uId", userId);
     const token = isAuthenticated().token;
     const followId = state.user._id;
-    console.log("fId", followId);
+    // console.log("fId", followId);
     const config = {
       headers: {
         Accept: "application/json",
@@ -88,7 +88,7 @@ const Profile = (props) => {
       },
     };
     const body = JSON.stringify({ userId, followId });
-    console.log("your body", body);
+    // console.log("your body", body);
 
     axios
       .put("http://localhost:8000/user/follow", body, config)
@@ -110,9 +110,46 @@ const Profile = (props) => {
       });
   };
 
+  const clickUnFollowButton = () => {
+    // console.log("clicked here");
+    const userId = isAuthenticated().user._id;
+    // console.log("uId", userId);
+    const token = isAuthenticated().token;
+    const unFollowId = state.user._id;
+    // console.log("fId", followId);
+    const config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ userId, unFollowId });
+    // console.log("your body", body);
+
+    axios
+      .put("http://localhost:8000/user/unfollow", body, config)
+      .then(function (response) {
+        if (response.status === 200) {
+          setState((prevState) => ({
+            ...prevState,
+            user: response.data,
+            following: !state.following,
+            followersCount: response.data.followers.length,
+            followingCount: response.data.following.length,
+          }));
+        } else {
+          console.log("Some error ocurred");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const userId = props.match.params.userId;
   const stateUser = state.user;
-  console.log("stateUser :", stateUser);
+  // console.log("stateUser :", stateUser);
   return (
     <>
       {state.redirect && <Redirect to="/signin" />}
@@ -163,24 +200,23 @@ const Profile = (props) => {
         ) : (
           // <p>{state.following ? "following" : "not following"}</p>
           <FollowProfileButton
-            onButtonClick={clickFollowButton}
+            onFollowButtonClick={clickFollowButton}
+            onUnFollowButtonClick={clickUnFollowButton}
             following={state.following}
           />
         )}
       </div>
       <div className="flex justify-center items-center bg-green-200 text-2xl font-medium">
-        <p className="p-3">
+        <div className="p-3">
           Followers{" "}
-          <Link className="text-green-600" to="">
-            {state.followersCount}
-          </Link>{" "}
-        </p>
-        <p className="p-3">
+          <p className="text-green-600 inline">{state.followersCount}</p>{" "}
+          {/* <div className="text-green-600">{state.followersCount}</div> to={`/followers/${state.user._id}`} */}
+        </div>
+        <div className="p-3">
           Following{" "}
-          <Link className="text-green-600" to="">
-            {state.followingCount}
-          </Link>{" "}
-        </p>
+          <p className="text-green-600 inline">{state.followingCount}</p>{" "}
+          {/* <div className="text-green-600">{state.followingCount}</div> */}
+        </div>
       </div>
       <PostsByUser userId={userId} following={state.followers} />
     </>

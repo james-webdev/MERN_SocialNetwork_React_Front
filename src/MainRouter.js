@@ -9,11 +9,15 @@ import PostCreateForm from "../src/posts/PostCreateForm";
 import SinglePost from "../src/posts/SinglePost";
 import UserUpdateForm from "../src/users/UserUpdateForm";
 import PrivateRoute from "../src/users/PrivateRoute";
+import Followers from "../src/users/Followers";
+import Following from "../src/users/Following";
 
 const MainRouter = () => (
   <div>
     <Menu />
     <Switch>
+      <Route exact path="/followers/:userId" component={Followers}></Route>
+      <Route exact path="/following/:userId" component={Following}></Route>
       <Route exact path="/users" component={Users}></Route>
       <Route exact path="/userupdateform" component={UserUpdateForm}></Route>
       <PrivateRoute
@@ -21,11 +25,11 @@ const MainRouter = () => (
         path="/post/:postId"
         component={SinglePost}
       ></PrivateRoute>
-      <Route
+      <PrivateRoute
         exact
         path="/postcreate/:userId"
         component={PostCreateForm}
-      ></Route>
+      ></PrivateRoute>
       <Route exact path="/signup" component={SignUp}></Route>
       <Route exact path="/signin" component={SignIn}></Route>
       <Route exact path="/" component={Home}></Route>

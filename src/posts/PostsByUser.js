@@ -41,23 +41,20 @@ const PostsByUser = (props) => {
 
   const postsObj = Object.values(state.posts);
   const postsCount = postsObj.length;
-  console.log("props", props);
+  // console.log("props", props);
   // const followersCount = props.following.followers.length;
   // const followingCount = props.following.following.length;
   //   console.log("here are your posts", postsObj);
-  console.log("here are your posts count", postsObj.length);
+  // console.log("here are your posts count", postsObj.length);
   //   console.log("here are your state posts", state.posts);
 
   return (
     <>
       <div className="bg-green-200 h-screen">
         <div className="flex justify-center items-center bg-green-200 text-2xl font-medium">
-          <p className="p-3">
-            Posts{" "}
-            <Link className="text-green-600" to="">
-              {postsCount}
-            </Link>
-          </p>
+          <div className="p-3">
+            Posts <p className="text-green-600 inline">{postsCount}</p>
+          </div>
           {/* <p className="p-3">
             Followers{" "}
             <Link className="text-green-600" to="">
