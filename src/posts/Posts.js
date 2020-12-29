@@ -30,9 +30,9 @@ const Posts = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-    // return () => {
-    //   setState({});
-    // };
+    return () => {
+      setState({});
+    };
   }, [state.user]);
 
   const postsObj = Object.values(state.posts);

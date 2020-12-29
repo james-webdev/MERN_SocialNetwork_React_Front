@@ -148,7 +148,7 @@ const Profile = (props) => {
   };
 
   const userId = props.match.params.userId;
-  // const stateUser = state.user;
+  const stateUser = state.user;
   // console.log("stateUser :", stateUser);
   return (
     <>
