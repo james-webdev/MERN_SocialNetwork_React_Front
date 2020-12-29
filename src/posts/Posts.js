@@ -31,7 +31,7 @@ const Posts = (props) => {
         console.log(error);
       });
     // return () => {
-    //   console.log("this needs to cleanup");
+    //   setState({});
     // };
   }, [state.user]);
 
@@ -43,10 +43,10 @@ const Posts = (props) => {
     <>
       <div className="text-1xl p-2 bg-green-300 font-medium">
         {/* <p className="text-3xl p-2 font-mono font-bold">Posts</p> */}
-        <p className="flex flex-wrap justify-center items-center w-full">
-          {postsObj.map((post, i) => {
+        <div className="flex flex-wrap justify-center items-center w-full">
+          {postsObj.map((post) => {
             console.log("here is your post", post);
-            return post.map((p) => {
+            return post.map((p, i) => {
               //   console.log("here is your p", p);
               const posterId = p.postedBy ? `/user/${p.postedBy._id}` : "";
               const posterName = p.postedBy ? p.postedBy.name : " Unknown";
@@ -75,6 +75,47 @@ const Posts = (props) => {
                         </p>
                       </div>
                       <br />
+                      <div className="flex items-center justify-center">
+                        <p className="text-sm inline">{p.likes.length}</p>
+                        {p.likes.length === 1 ? (
+                          <p className="text-sm inline pl-1">Like</p>
+                        ) : (
+                          <p className="text-sm inline pl-1">Likes</p>
+                        )}
+                        {p.likes.length === 0 ? (
+                          <div className="pl-0.5">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              className="h-3 w-3"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                              />
+                            </svg>
+                          </div>
+                        ) : (
+                          <div className="pl-0.5">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              className="h-3 w-3 fill-current text-red-500"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+
                       <p className="text-xs p-2 sm:p-1">
                         Posted by{" "}
                         <Link className="text-green-400" to={`${posterId}`}>
@@ -106,7 +147,7 @@ const Posts = (props) => {
               );
             });
           })}
-        </p>
+        </div>
       </div>
     </>
   );

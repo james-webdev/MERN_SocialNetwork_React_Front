@@ -5,14 +5,14 @@ const FollowProfileButton = (props) => (
     {props.following ? (
       <button
         onClick={props.onUnFollowButtonClick}
-        class="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+        className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded"
       >
         Unfollow
       </button>
     ) : (
       <button
         onClick={props.onFollowButtonClick}
-        class="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+        className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded"
       >
         Follow
       </button>

@@ -64,6 +64,15 @@ const Menu = ({ history }) => {
           >
           Home
         </Link> */}
+        {/* <div className="bg-green-400">
+          <Link
+            style={isActive(history, "/postcreate")}
+            to="/postcreate"
+            className="p-2 font-mono hidden sm:block"
+          >
+            Create Post
+          </Link>
+        </div> */}
 
         {!isAuthenticated() && (
           <>
@@ -81,14 +90,6 @@ const Menu = ({ history }) => {
             >
               Sign Up
             </Link>
-            {/* <div className="bg-green-400">
-              <Link
-                to="/signin"
-                className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded ml-64 mt-3 mr-15"
-              >
-                Create Post
-              </Link>
-            </div> */}
           </>
         )}
 
@@ -102,6 +103,7 @@ const Menu = ({ history }) => {
               Sign Out
             </button>
             <Link
+              style={isActive(history, `/user/${isAuthenticated().user._id}`)}
               to={`/user/${isAuthenticated().user._id}`}
               className="p-2 hidden font-mono sm:block"
             >

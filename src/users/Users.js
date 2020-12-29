@@ -30,9 +30,9 @@ const Users = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-    // return () => {
-    //   console.log("this needs to cleanup");
-    // };
+    return () => {
+      setState({});
+    };
   }, [state.user]);
 
   const usersObj = Object.values(state.users);

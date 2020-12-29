@@ -23,7 +23,6 @@ const SinglePost = (props) => {
             setState((prevState) => ({
               ...prevState,
               post: response.data,
-              likes: response.data.likes.length,
               loading: false,
             }));
             // console.log(response.data);
@@ -46,7 +45,6 @@ const SinglePost = (props) => {
   }, [props.match.params.postId]);
 
   const checkLike = (likes) => {
-    console.log("checklike working");
     const userId = isAuthenticated() && isAuthenticated().user._id;
     let match = likes.indexOf(userId) !== -1;
     return match;
@@ -55,7 +53,6 @@ const SinglePost = (props) => {
   const likeToggle = () => {
     if (!state.like) {
       const clickLike = () => {
-        console.log("clicked like");
         const userId = isAuthenticated().user._id;
         console.log("userId", userId);
         const postId = state.post._id;
@@ -92,7 +89,7 @@ const SinglePost = (props) => {
       clickLike();
     } else {
       const clickUnlike = () => {
-        console.log("clicked unlike");
+        // console.log("clicked here");
         const userId = isAuthenticated().user._id;
         // console.log("uId", userId);
         const token = isAuthenticated().token;
@@ -195,57 +192,17 @@ const SinglePost = (props) => {
                           Edit User
                         </button>
                       </div> */}
-              {state.like ? (
-                <h3 className="inline pl-1" onClick={likeToggle}>
-                  <p className="inline">{state.likes}</p>
-                  {state.likes === 1 ? (
-                    <p className="inline pl-1">Like</p>
-                  ) : (
-                    <p className="inline pl-1">Likes</p>
-                  )}
+              {/* {state.like ? (
+                <h3 onClick={likeToggle}>
+                  <p>liked</p>
+                  {state.likes} Like
                 </h3>
               ) : (
-                <h3 className="inline pl-1" onClick={likeToggle}>
-                  <p className="inline">{state.likes}</p>
-                  {state.likes === 1 ? (
-                    <p className="inline pl-1">Like</p>
-                  ) : (
-                    <p className="inline pl-1">Likes</p>
-                  )}
+                <h3 onClick={likeToggle}>
+                  <p>not liked</p>
+                  {state.likes} Like
                 </h3>
-              )}
-              {state.likes === 0 ? (
-                <div className="p-1" onClick={likeToggle}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="h-5 w-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                </div>
-              ) : (
-                <div className=" p-1" onClick={likeToggle}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    className="h-5 w-5 fill-current text-red-500"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              )}
+              )} */}
             </article>
           </div>
         </div>
@@ -255,3 +212,39 @@ const SinglePost = (props) => {
 };
 
 export default SinglePost;
+
+
+
+exports.like = (req, res) => {
+    //   Post.findByIdAndUpdate(
+    //     req.body.postId,
+    //     { $push: { likes: req.body.userId } },
+    //     { new: true }
+    //   ).exec((err, result) => {
+    //     if (err) {
+    //       return res.status(400).json({
+    //         error: err,
+    //       });
+    //     }
+    //     res.json(result);
+    //   });
+    // };
+    
+    // exports.unlike = (req, res) => {
+    //   Post.findByIdAndUpdate(
+    //     req.body.postId,
+    //     { $pull: { likes: req.body.userId } },
+    //     { new: true }
+    //   ).exec((err, result) => {
+    //     if (err) {
+    //       return res.status(400).json({
+    //         error: err,
+    //       });
+    //     }
+    //     res.json(result);
+    //   });
+    // };
+
+
+    router.put("/post/like", like);
+router.put("/post/unlike", unlike);
