@@ -83,7 +83,7 @@ const Posts = (props) => {
                           <p className="text-sm inline pl-1">Likes</p>
                         )}
                         {p.likes.length === 0 ? (
-                          <div className="pl-0.5">
+                          <div to={`/post/${p._id}`} className="pl-0.5">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"

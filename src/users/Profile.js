@@ -6,6 +6,7 @@ import { Redirect, Link } from "react-router-dom";
 import avatarImage from "../images/avatar.PNG";
 import PostsByUser from "../posts/PostsByUser";
 import FollowProfileButton from "../users/FollowProfileButton";
+import DeleteUser from "../users/DeleteUser";
 
 const Profile = (props) => {
   const [state, setState] = useState({
@@ -148,7 +149,7 @@ const Profile = (props) => {
   };
 
   const userId = props.match.params.userId;
-  const stateUser = state.user;
+  // const stateUser = state.user;
   // console.log("stateUser :", stateUser);
   return (
     <>
@@ -162,7 +163,7 @@ const Profile = (props) => {
             </div>
             <Link
               to="/userupdateform"
-              className="flex items-center justify-center w-48 rounded p-2 mt-2"
+              className="flex items-center justify-center w-36 rounded p-2 mt-2"
             >
               <img
                 title="Click to update profile pic"
@@ -180,7 +181,7 @@ const Profile = (props) => {
         {isAuthenticated().user &&
         isAuthenticated().user._id === state.user._id ? (
           <>
-            <div className="pt-10 bg-green-200">
+            <div className="pt-14 bg-green-200">
               {/* <button class="bg-green-600 shadow hover:bg-green-800 text-black font-bold py-2 px-4 rounded ml-4 mt-3 mr-15">
                   Delete Profile
                 </button>
@@ -191,10 +192,11 @@ const Profile = (props) => {
 
               <Link
                 to={`/postcreate/${isAuthenticated().user._id}`}
-                className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded ml-4 mt-3 mr-15"
+                className="bg-white text-sm shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded mt-3 mr-15"
               >
                 Create Post
               </Link>
+              <DeleteUser userId={isAuthenticated().user._id} />
             </div>
           </>
         ) : (

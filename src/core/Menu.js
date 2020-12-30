@@ -131,7 +131,7 @@ const Menu = ({ history }) => {
           <div className="p-3 m-2 border bg-gray-100 border-black rounded text-black">
             <div className="p-1 hover:bg-green-100">
               <Link to="/" className="p-2" onClick={() => setIsOpen(!isOpen)}>
-                Home
+                ArtBook
               </Link>
             </div>
             <div className="p-1 hover:bg-green-100">

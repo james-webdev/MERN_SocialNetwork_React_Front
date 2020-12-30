@@ -228,7 +228,7 @@ const SinglePost = (props) => {
                           deletePost();
                         }
                       }}
-                      className="bg-white border border-black hover:bg-gray-200 text-black text-sm font-bold py-1 px-2 rounded"
+                      className="bg-white shadow hover:bg-gray-100 text-black text-sm font-bold py-2 px-4 rounded"
                     >
                       Delete Post
                     </button>
