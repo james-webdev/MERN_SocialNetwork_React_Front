@@ -287,6 +287,36 @@ const SinglePost = (props) => {
                     </svg>
                   </div>
                 )}
+                <div>
+                  {isAuthenticated().user &&
+                    isAuthenticated().user.role === "admin" && (
+                      <div class="mt-5 ml-4 p-3 bg-gray-300 border rounded-sm border-solid border-black">
+                        <div className="">
+                          <div className="flex justify-center items-center">
+                            <p className="mb-2 text-3xl text-red-500 font-medium p-2">
+                              Delete Post as Admin{" "}
+                            </p>
+                          </div>
+                          <div className="flex justify-center items-center">
+                            <button
+                              onClick={() => {
+                                if (
+                                  window.confirm(
+                                    "Are you sure to delete this post?"
+                                  )
+                                ) {
+                                  deletePost();
+                                }
+                              }}
+                              className="bg-white shadow hover:bg-gray-100 text-black text-sm font-bold py-2 px-4 rounded"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                </div>
               </article>
             </div>
           </div>

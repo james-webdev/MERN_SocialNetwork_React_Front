@@ -12,7 +12,7 @@ const FollowProfileButton = (props) => (
     ) : (
       <button
         onClick={props.onFollowButtonClick}
-        className="bg-white shadow hover:bg-gray-100 text-black font-bold py-2 px-4 rounded"
+        className="bg-white shadow hover:bg-gray-100 text-black mr-2 font-bold py-2 px-4 rounded"
       >
         Follow
       </button>

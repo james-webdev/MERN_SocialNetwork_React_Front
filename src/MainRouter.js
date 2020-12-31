@@ -11,11 +11,13 @@ import UserUpdateForm from "../src/users/UserUpdateForm";
 import PrivateRoute from "../src/users/PrivateRoute";
 import Followers from "../src/users/Followers";
 import Following from "../src/users/Following";
+import Admin from "../src/admin/Admin";
 
 const MainRouter = () => (
   <div>
     <Menu />
     <Switch>
+      <PrivateRoute exact path="/admin" component={Admin} />
       <Route exact path="/followers/:userId" component={Followers}></Route>
       <Route exact path="/following/:userId" component={Following}></Route>
       <Route exact path="/users" component={Users}></Route>

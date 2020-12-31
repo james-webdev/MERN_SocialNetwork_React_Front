@@ -90,6 +90,13 @@ const Menu = ({ history }) => {
             >
               Sign Up
             </Link>
+            {/* <Link
+              style={isActive(history, "/")}
+              className="p-2 font-mono hidden sm:block"
+              to="/"
+            >
+              Your Profile
+            </Link> */}
           </>
         )}
 
@@ -108,6 +115,17 @@ const Menu = ({ history }) => {
               className="p-2 hidden font-mono sm:block"
             >
               {isAuthenticated().user.name}'s Profile
+            </Link>
+          </>
+        )}
+        {isAuthenticated() && isAuthenticated().user.role === "admin" && (
+          <>
+            <Link
+              to={`/admin`}
+              style={isActive(history, `/admin`)}
+              className="p-2 hidden font-mono sm:block"
+            >
+              Admin Dashboard
             </Link>
           </>
         )}
@@ -196,6 +214,13 @@ const Menu = ({ history }) => {
                   </Link>
                 </div>
               </>
+            )}
+            {isAuthenticated() && isAuthenticated().user.role === "admin" && (
+              <div className="p-1 font-mono hover:bg-green-100">
+                <Link to={`/admin`} className="font-mono p-2">
+                  Admin Dashboard
+                </Link>
+              </div>
             )}
           </div>
         </div>

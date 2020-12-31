@@ -207,7 +207,25 @@ const Profile = (props) => {
             following={state.following}
           />
         )}
+        <div>
+          {isAuthenticated().user && isAuthenticated().user.role === "admin" && (
+            <div class="mt-5 rounded-sm mr-3 ml-1 mt-4 sm:ml-4 p-1 sm:p-3 bg-gray-300 border border-solid border-black">
+              <div className="">
+                <p className="mb-2 text-3xl text-red-500 font-medium p-2">
+                  Delete Profile as an Admin
+                </p>
+                <p className="mb-2 text-xs text-red-500 p-2">
+                  You'll need to sign back in after
+                </p>
+                <div className="flex justify-center items-center">
+                  <DeleteUser userId={state.user._id} />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="flex justify-center items-center bg-green-200 text-2xl font-medium">
         <div className="p-3">
           Followers{" "}
