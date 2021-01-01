@@ -175,9 +175,9 @@ const SinglePost = (props) => {
           </div>
         ) : (
           <div key={state.post._id}>
-            <div>
+            <div className="p-3">
               <article className="mx-auto max-w-sm sm:max-w-xl rounded p-3 shadow-lg m-4 bg-gray-100">
-                <header className="leading-tight p-2 md:p-4">
+                <header className="leading-tight p-3 md:p-4">
                   <div className="flex items-center justify-center">
                     <img
                       src={`http://178.62.76.166/api/post/photo/${state.post._id}`}

@@ -148,14 +148,18 @@ const Menu = ({ history }) => {
         <div className={isOpen ? "hidden" : "flex bg-green-300"}>
           <div className="p-3 m-2 border bg-gray-100 border-black rounded text-black">
             <div className="p-1 hover:bg-green-100">
-              <Link to="/" className="p-2" onClick={() => setIsOpen(!isOpen)}>
+              <Link
+                to="/"
+                className="p-2 font-mono"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 ArtBook
               </Link>
             </div>
             <div className="p-1 hover:bg-green-100">
               <Link
                 to="/users"
-                className="p-2"
+                className="font-mono p-2"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 Users
