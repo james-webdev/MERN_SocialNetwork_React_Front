@@ -21,7 +21,7 @@ const DeleteUser = (props) => {
       },
     };
     axios
-      .delete(`http://localhost:8000/user/${userId}`, config)
+      .delete(`http://178.62.76.166/api/user/${userId}`, config)
       .then(function (response) {
         if (response.status === 200) {
           signOut(() => console.log("User is deleted"));

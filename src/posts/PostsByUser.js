@@ -18,7 +18,7 @@ const PostsByUser = (props) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get(`http://localhost:8000/posts/by/${userId}`, config)
+      .get(`http://178.62.76.166/api/posts/by/${userId}`, config)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -88,7 +88,7 @@ const PostsByUser = (props) => {
                       <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
                         <Link to={`/post/${post._id}`}>
                           <img
-                            src={`http://localhost:8000/post/photo/${post._id}`}
+                            src={`http://178.62.76.166/api/post/photo/${post._id}`}
                             alt={post.title}
                             onError={(i) => (i.target.src = `${avatarImage}`)}
                             className=""

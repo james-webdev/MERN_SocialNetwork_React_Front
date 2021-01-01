@@ -40,7 +40,7 @@ const Profile = (props) => {
         key: "value",
       };
       axios
-        .get(`http://localhost:8000/user/${userId}`, bodyParameters, config)
+        .get(`http://178.62.76.166/api/user/${userId}`, bodyParameters, config)
         .then(function (response) {
           if (response.status === 200) {
             // console.log("response data", response.data);
@@ -92,7 +92,7 @@ const Profile = (props) => {
     // console.log("your body", body);
 
     axios
-      .put("http://localhost:8000/user/follow", body, config)
+      .put("http://178.62.76.166/api/user/follow", body, config)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -129,7 +129,7 @@ const Profile = (props) => {
     // console.log("your body", body);
 
     axios
-      .put("http://localhost:8000/user/unfollow", body, config)
+      .put("http://178.62.76.166/api/user/unfollow", body, config)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -168,7 +168,7 @@ const Profile = (props) => {
               <img
                 title="Click to update profile pic"
                 className="rounded border-4 border-white"
-                src={`http://localhost:8000/user/photo/${state.user._id}`}
+                src={`http://178.62.76.166/api/user/photo/${state.user._id}`}
                 onError={(i) => (i.target.src = `${avatarImage}`)}
                 alt={state.user.name}
                 style={{ objectFit: "cover", height: "96px", width: "96px" }}

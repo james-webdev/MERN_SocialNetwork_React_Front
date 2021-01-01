@@ -27,7 +27,7 @@ function SignIn() {
     };
     console.log(payload);
     axios
-      .post("http://localhost:8000/signin", payload)
+      .post("http://178.62.76.166/api/signin", payload)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -51,7 +51,7 @@ function SignIn() {
       {state.redirect && <Redirect to="/" />}
 
       <div className="bg-green-300 min-h-screen flex flex-col">
-        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="container mb-40 max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
           <div className="bg-gray-100 px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Sign In</h1>
             <input

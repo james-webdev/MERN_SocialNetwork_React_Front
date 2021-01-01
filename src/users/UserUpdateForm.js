@@ -37,7 +37,7 @@ const UserUpdateForm = (props) => {
     };
     const body = postData;
     axios
-      .put(`http://localhost:8000/user/${userId}`, body, config)
+      .put(`http://178.62.76.166/api/user/${userId}`, body, config)
       .then(function (response) {
         if (response) {
           console.log(response);

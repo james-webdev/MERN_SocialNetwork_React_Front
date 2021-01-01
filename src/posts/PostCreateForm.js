@@ -49,7 +49,7 @@ const PostCreateForm = (props) => {
     };
     const body = postData;
     axios
-      .post(`http://localhost:8000/post/new/${userId}`, body, config)
+      .post(`http://178.62.76.166/api/post/new/${userId}`, body, config)
       .then(function (response) {
         if (response) {
           console.log(response);

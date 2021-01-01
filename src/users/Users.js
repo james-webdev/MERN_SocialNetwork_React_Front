@@ -11,7 +11,7 @@ const Users = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/users`)
+      .get(`http://178.62.76.166/api/users`)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -59,7 +59,7 @@ const Users = (props) => {
                       className="flex items-center justify-center w-36 rounded-md p-2 mt-2"
                     >
                       <img
-                        src={`http://localhost:8000/user/photo/${user._id}`}
+                        src={`http://178.62.76.166/api/user/photo/${user._id}`}
                         onError={(i) => (i.target.src = `${avatarImage}`)}
                         alt={user.name}
                         style={{ objectFit: "cover", height: "160px" }}

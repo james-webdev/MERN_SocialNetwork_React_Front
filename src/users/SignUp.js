@@ -28,7 +28,7 @@ function SignUp() {
     };
     console.log(payload);
     axios
-      .post("http://localhost:8000/signup", payload)
+      .post("http://178.62.76.166/api/signup", payload)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({

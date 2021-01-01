@@ -26,7 +26,7 @@ const SinglePost = (props) => {
       const postId = props.match.params.postId;
       console.log(postId);
       axios
-        .get(`http://localhost:8000/post/${postId}`)
+        .get(`http://178.62.76.166/api/post/${postId}`)
         .then(function (response) {
           if (response.status === 200) {
             setState((prevState) => ({
@@ -75,7 +75,7 @@ const SinglePost = (props) => {
         // console.log("your body", body);
 
         axios
-          .put("http://localhost:8000/post/like", body, config)
+          .put("http://178.62.76.166/api/post/like", body, config)
           .then(function (response) {
             if (response.status === 200) {
               console.log("response.likes", response.data);
@@ -112,7 +112,7 @@ const SinglePost = (props) => {
         // console.log("your body", body);
 
         axios
-          .put("http://localhost:8000/post/unlike", body, config)
+          .put("http://178.62.76.166/api/post/unlike", body, config)
           .then(function (response) {
             if (response.status === 200) {
               setState((prevState) => ({
@@ -140,7 +140,7 @@ const SinglePost = (props) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .delete(`http://localhost:8000/post/${postId}`, config)
+      .delete(`http://178.62.76.166/api/post/${postId}`, config)
       .then(function (response) {
         if (response.status === 200) {
           console.log(response.data);
@@ -180,7 +180,7 @@ const SinglePost = (props) => {
                 <header className="leading-tight p-2 md:p-4">
                   <div className="flex items-center justify-center">
                     <img
-                      src={`http://localhost:8000/post/photo/${state.post._id}`}
+                      src={`http://178.62.76.166/api/post/photo/${state.post._id}`}
                       alt={state.post.title}
                       className=""
                       style={{

@@ -11,7 +11,7 @@ const Posts = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/posts`)
+      .get(`http://178.62.76.166/api/posts`)
       .then(function (response) {
         if (response.status === 200) {
           setState((prevState) => ({
@@ -57,7 +57,7 @@ const Posts = (props) => {
                       <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
                         <Link to={`/post/${p._id}`}>
                           <img
-                            src={`http://localhost:8000/post/photo/${p._id}`}
+                            src={`http://178.62.76.166/api/post/photo/${p._id}`}
                             alt={p.title}
                             onError={(i) => (i.target.src = `${avatarImage}`)}
                             className=""
