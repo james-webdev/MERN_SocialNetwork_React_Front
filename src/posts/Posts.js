@@ -51,16 +51,16 @@ const Posts = (props) => {
               const posterId = p.postedBy ? `/user/${p.postedBy._id}` : "";
               const posterName = p.postedBy ? p.postedBy.name : " Unknown";
               return (
-                <div className="flex-wrap p-1 sm:p-0" key={i}>
+                <div className="w-2/4 sm:w-48 flex-wrap p-1 sm:p-0" key={i}>
                   <article className="rounded shadow-lg p-1 m-1 bg-gray-100 hover:bg-gray-200">
                     <header className="leading-tight p-1 md:p-4">
-                      <div className="flex items-center justify-center w-40 rounded-md p-2 mt-2">
-                        <Link to={`/post/${p._id}`}>
+                      <div className="flex items-center justify-center rounded-md p-2 mt-2">
+                        <Link className="" to={`/post/${p._id}`}>
                           <img
                             src={`http://178.62.76.166/api/post/photo/${p._id}`}
                             alt={p.title}
                             onError={(i) => (i.target.src = `${avatarImage}`)}
-                            className=""
+                            className="bg-auto"
                             style={{ objectFit: "cover", height: "160px" }}
                           />
                         </Link>
